@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getGuides, getGlossaryTerms } from '../../lib/sanity';
+
+const guides = await getGuides();
+const terms = await getGlossaryTerms();
+---
+
+<BaseLayout title="Sanity Check" noindex>
+  <div class="mx-auto max-w-[65ch] px-6 py-8">
+    <h1 class="font-heading text-2xl font-semibold tracking-tight">Sanity connection check</h1>
+    <p class="mt-4 text-sm text-muted-foreground">
+      Guides: {guides.length} | Glossary terms: {terms.length}
+    </p>
+    {guides.length > 0 && (
+      <div class="mt-6">
+        <h2 class="font-heading text-lg font-semibold">Guides</h2>
+        <ul class="mt-2 space-y-1">
+          {guides.map((g) => (
+            <li class="text-sm">{g.title} ({g.slug})</li>
+          ))}
+        </ul>
+      </div>
+    )}
+    {terms.length > 0 && (
+      <div class="mt-6">
+        <h2 class="font-heading text-lg font-semibold">Glossary terms</h2>
+        <ul class="mt-2 space-y-1">
+          {terms.map((t) => (
+            <li class="text-sm">{t.term} ({t.slug})</li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+</BaseLayout>

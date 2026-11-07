@@ -1,0 +1,133 @@
+---
+import { SITE } from '../config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import GuideRow from '../components/GuideRow.astro';
+import { getGuides } from '../lib/sanity';
+
+const latestGuides = await getGuides(5);
+
+const startHere = [
+  {
+    number: '01',
+    title: 'Calculate your zakat',
+    description: 'A simple tool to work out what you owe on cash, gold, and investments.',
+    href: '/tools/zakat-calculator',
+  },
+  {
+    number: '02',
+    title: 'Look up a term',
+    description: 'Plain-language definitions for Islamic finance vocabulary.',
+    href: '/glossary',
+  },
+  {
+    number: '03',
+    title: 'Read the guides',
+    description: 'Longer explanations on zakat, halal money, and investing.',
+    href: '/guides',
+  },
+];
+---
+
+<BaseLayout>
+  <!-- Masthead intro -->
+  <section class="mx-auto max-w-[1100px] px-6 pt-16 pb-12 md:pt-24 md:pb-16">
+    <p class="eyebrow mb-4">{SITE.name}</p>
+    <h1 class="font-heading text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
+      {SITE.tagline}
+    </h1>
+    <p class="mt-6 max-w-[65ch] text-lg leading-relaxed text-muted-foreground">
+      Moonmark Network publishes clear, plain-language guides on zakat, halal money, and Islamic
+      finance. We explain the concepts, the calculations, and the vocabulary — without hype or
+      investment advice.
+    </p>
+    <p class="mt-8">
+      <a
+        href="/tools/zakat-calculator"
+        class="group inline-flex items-center gap-2 font-sans text-base font-medium text-primary no-underline transition-colors duration-150 hover:text-ochre"
+      >
+        Try the zakat calculator
+        <span class="transition-transform duration-150 group-hover:translate-x-1">&rarr;</span>
+      </a>
+    </p>
+  </section>
+
+  <!-- Start here -->
+  <section class="border-t hairline">
+    <div class="mx-auto max-w-[1100px] px-6 py-12 md:py-16">
+      <p class="eyebrow mb-8">Start here</p>
+      <div class="divide-y divide-border">
+        {startHere.map((item) => (
+          <a
+            href={item.href}
+            class="group flex items-baseline gap-6 py-6 no-underline transition-colors duration-150 hover:bg-muted/30 md:gap-10"
+          >
+            <span class="font-heading text-3xl font-light text-muted-foreground md:text-4xl">
+              {item.number}
+            </span>
+            <div class="flex-1">
+              <h2 class="font-heading text-xl font-semibold tracking-tight text-foreground transition-colors duration-150 group-hover:text-primary md:text-2xl">
+                {item.title}
+              </h2>
+              <p class="mt-1 text-sm text-muted-foreground md:text-base">
+                {item.description}
+              </p>
+            </div>
+            <span class="hidden text-muted-foreground transition-all duration-150 group-hover:text-primary group-hover:translate-x-1 md:inline">
+              &rarr;
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest guides -->
+  <section class="border-t hairline">
+    <div class="mx-auto max-w-[1100px] px-6 py-12 md:py-16">
+      <div class="mb-8 flex items-baseline justify-between">
+        <p class="eyebrow">Latest guides</p>
+        <a href="/guides" class="font-sans text-sm text-primary no-underline transition-colors duration-150 hover:text-ochre">
+          View all &rarr;
+        </a>
+      </div>
+      <div class="divide-y divide-border">
+        {latestGuides.length === 0 ? (
+          <p class="py-6 text-sm text-muted-foreground italic">No guides yet. Check back soon.</p>
+        ) : (
+          latestGuides.map((guide) => <GuideRow guide={guide} />)
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter strip -->
+  <section class="border-t hairline">
+    <div class="mx-auto max-w-[1100px] px-6 py-12 md:py-16">
+      <div class="max-w-[65ch]">
+        <p class="eyebrow mb-4">Newsletter</p>
+        <h2 class="font-heading text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+          Get new guides in your inbox
+        </h2>
+        <p class="mt-3 text-muted-foreground">
+          One email a month with new guides, tools, and glossary updates. No spam, no hype.
+        </p>
+        <!-- TODO: Wire up newsletter backend -->
+        <form class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center" action="#" method="post">
+          <Input
+            type="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+            class="sm:max-w-xs"
+            aria-label="Email address"
+          />
+          <Button type="submit" variant="default">
+            Subscribe
+          </Button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

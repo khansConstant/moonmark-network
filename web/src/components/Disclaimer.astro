@@ -1,0 +1,17 @@
+---
+import { Alert, AlertDescription } from './ui/alert';
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<Alert class={compact ? 'text-xs py-2 px-3' : ''}>
+  <AlertDescription class={compact ? 'text-xs' : ''}>
+    Educational content only. Nothing here is investment, legal, or religious advice, or a
+    recommendation to buy or sell any security. Speak to a SEBI-registered adviser and a qualified
+    scholar before making financial or religious decisions.
+  </AlertDescription>
+</Alert>

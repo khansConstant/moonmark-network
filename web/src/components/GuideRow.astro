@@ -1,0 +1,35 @@
+---
+import { Badge } from './ui/badge';
+import { formatDate } from '../lib/format';
+import type { GuideSummary } from '../lib/sanity';
+
+interface Props {
+  guide: GuideSummary;
+}
+
+const { guide } = Astro.props;
+const href = `/guides/${guide.slug}`;
+const readTime = guide.readMinutes ? `${guide.readMinutes} min read` : '';
+const date = formatDate(guide.publishedAt);
+---
+
+<a
+  href={href}
+  class="group block py-6 no-underline transition-colors duration-150 hover:bg-muted/30"
+>
+  <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+    {guide.topic && (
+      <Badge variant="outline" class="font-sans text-xs font-normal">
+        {guide.topic}
+      </Badge>
+    )}
+    {readTime && <span class="font-sans text-xs text-muted-foreground">{readTime}</span>}
+    {date && <span class="font-sans text-xs text-muted-foreground">{date}</span>}
+  </div>
+  <h3 class="mt-2 font-heading text-xl font-semibold tracking-tight text-foreground transition-colors duration-150 group-hover:text-primary md:text-2xl">
+    {guide.title}
+  </h3>
+  <p class="mt-1 text-sm text-muted-foreground md:text-base">
+    {guide.dek}
+  </p>
+</a>

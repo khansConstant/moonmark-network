@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ComingSoon from '../components/ComingSoon.astro';
+---
+
+<BaseLayout title="Newsletter">
+  <PageHeader
+    eyebrow="Newsletter"
+    title="The Moonmark newsletter"
+    dek="One email a month with new guides, tools, and glossary updates."
+  />
+  <ComingSoon message="The newsletter is launching soon. Subscribe from the homepage to be notified." />
+</BaseLayout>

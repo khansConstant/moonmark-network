@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { getGlossaryTerms } from '../../lib/sanity';
+import type { GlossaryTerm } from '../../lib/sanity';
+
+const terms = await getGlossaryTerms();
+
+const grouped = terms.reduce<Record<string, GlossaryTerm[]>>((acc, term) => {
+  const letter = term.term.charAt(0).toUpperCase();
+  if (!acc[letter]) acc[letter] = [];
+  acc[letter].push(term);
+  return acc;
+}, {});
+
+const letters = Object.keys(grouped).sort();
+---
+
+<BaseLayout title="Glossary">
+  <PageHeader
+    eyebrow="Glossary"
+    title="Islamic finance terms"
+    dek="Plain-language definitions for the vocabulary of halal money and zakat."
+  />
+  <div class="mx-auto max-w-[1100px] px-6 py-8">
+    {terms.length === 0 ? (
+      <p class="text-sm text-muted-foreground italic">The glossary is being built. Terms will be added regularly.</p>
+    ) : (
+      <>
+        {/* Letter jump */}
+        <nav class="mb-8 flex flex-wrap gap-2" aria-label="Jump to letter">
+          {letters.map((letter) => (
+            <a
+              href={`#${letter}`}
+              class="font-sans text-sm text-primary no-underline transition-colors duration-150 hover:text-ochre"
+            >
+              {letter}
+            </a>
+          ))}
+        </nav>
+
+        {/* Terms grouped by letter */}
+        <div class="space-y-12">
+          {letters.map((letter) => (
+            <section id={letter}>
+              <h2 class="eyebrow mb-4">{letter}</h2>
+              <div class="divide-y divide-border">
+                {grouped[letter].map((term) => (
+                  <div id={term.slug} class="py-6 scroll-mt-24">
+                    <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                      <h3 class="font-heading text-xl font-semibold tracking-tight text-foreground md:text-2xl">
+                        {term.term}
+                      </h3>
+                      {term.arabic && (
+                        <span
+                          lang="ar"
+                          dir="rtl"
+                          class="font-sans text-lg text-muted-foreground"
+                          style="font-family: 'Noto Naskh Arabic', 'Traditional Arabic', 'Geeza Pro', 'Arabic Typesetting', serif;"
+                        >
+                          {term.arabic}
+                        </span>
+                      )}
+                    </div>
+                    <p class="mt-2 max-w-[65ch] text-sm text-muted-foreground md:text-base">
+                      {term.definition}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </>
+    )}
+  </div>
+</BaseLayout>

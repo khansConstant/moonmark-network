@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ComingSoon from '../components/ComingSoon.astro';
+---
+
+<BaseLayout title="Methodology">
+  <PageHeader
+    eyebrow="Methodology"
+    title="How we research and write"
+    dek="Our process for ensuring accuracy and clarity in every guide."
+  />
+  <div class="mx-auto max-w-[65ch] px-6 py-8">
+    <div class="prose">
+      <p>
+        Every guide on Moonmark Network will go through a structured review process before publication.
+        We plan to work with qualified scholars and finance professionals to verify religious and
+        financial accuracy, and to have content reviewed for clarity by editors who are not subject
+        matter experts.
+      </p>
+      <p>
+        We will document our sources, distinguish between established rulings and areas of scholarly
+        difference, and clearly mark any content that is still under review. This page will be updated
+        with the full methodology once the review process is in place.
+      </p>
+    </div>
+  </div>
+  <ComingSoon message="Full methodology details are being finalized." />
+</BaseLayout>

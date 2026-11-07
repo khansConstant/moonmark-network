@@ -1,0 +1,201 @@
+---
+import { SITE } from '../config';
+import '../styles/global.css';
+import { Button } from '../components/ui/button';
+import { Badge } from '../components/ui/badge';
+import { Separator } from '../components/ui/separator';
+import { Alert, AlertDescription, AlertTitle } from '../components/ui/alert';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Styleguide | {SITE.name}</title>
+  </head>
+  <body class="bg-background text-foreground">
+    <main class="mx-auto max-w-4xl px-6 py-16">
+      <header class="mb-16">
+        <p class="eyebrow mb-2">Internal</p>
+        <h1 class="text-4xl font-semibold tracking-tight">Styleguide</h1>
+        <p class="mt-2 text-muted-foreground">Design tokens and component reference. Not indexed.</p>
+      </header>
+
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-semibold">Typography</h2>
+        <div class="space-y-6">
+          <div>
+            <p class="eyebrow mb-1">Display / H1</p>
+            <h1 class="text-5xl font-semibold tracking-tight">Halal money, explained simply.</h1>
+          </div>
+          <div>
+            <p class="eyebrow mb-1">H2</p>
+            <h2 class="text-3xl font-semibold tracking-tight">Understanding zakat on gold</h2>
+          </div>
+          <div>
+            <p class="eyebrow mb-1">H3</p>
+            <h3 class="text-2xl font-semibold tracking-tight">The nisab threshold</h3>
+          </div>
+          <div>
+            <p class="eyebrow mb-1">Body (prose)</p>
+            <div class="prose">
+              <p>
+                Zakat is one of the five pillars of Islam. It is a portion of wealth given to those in need,
+                calculated at 2.5% of eligible assets held for a full lunar year. This guide explains how
+                to calculate zakat on gold, silver, and cash in plain terms.
+              </p>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow mb-1">Eyebrow label</p>
+            <p class="eyebrow">Guides</p>
+          </div>
+        </div>
+      </section>
+
+      <Separator class="my-12" />
+
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-semibold">Colors</h2>
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div>
+            <div class="h-16 rounded border border-border bg-background"></div>
+            <p class="mt-2 text-xs text-muted-foreground">Background<br />#FAF7F2</p>
+          </div>
+          <div>
+            <div class="h-16 rounded border border-border bg-foreground"></div>
+            <p class="mt-2 text-xs text-muted-foreground">Foreground<br />#1A1814</p>
+          </div>
+          <div>
+            <div class="h-16 rounded bg-primary"></div>
+            <p class="mt-2 text-xs text-muted-foreground">Primary / Accent<br />#1F4D47</p>
+          </div>
+          <div>
+            <div class="h-16 rounded bg-ochre"></div>
+            <p class="mt-2 text-xs text-muted-foreground">Ochre<br />#A8782B</p>
+          </div>
+          <div>
+            <div class="h-16 rounded bg-muted"></div>
+            <p class="mt-2 text-xs text-muted-foreground">Muted<br />#F0EBE3</p>
+          </div>
+          <div>
+            <div class="h-16 rounded bg-muted-foreground"></div>
+            <p class="mt-2 text-xs text-muted-foreground">Muted FG<br />#6B655C</p>
+          </div>
+          <div>
+            <div class="h-16 rounded border border-border bg-border"></div>
+            <p class="mt-2 text-xs text-muted-foreground">Border<br />#E4DED3</p>
+          </div>
+          <div>
+            <div class="h-16 rounded bg-secondary"></div>
+            <p class="mt-2 text-xs text-muted-foreground">Secondary<br />#F0EBE3</p>
+          </div>
+        </div>
+      </section>
+
+      <Separator class="my-12" />
+
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-semibold">Links</h2>
+        <div class="space-y-3">
+          <p><a href="#">Default link</a> with underline offset</p>
+          <p><a href="#" class="text-ochre">Ochre link</a> for secondary accent</p>
+          <p class="text-muted-foreground">Muted text: <span class="text-muted-foreground">#6B655C</span></p>
+        </div>
+      </section>
+
+      <Separator class="my-12" />
+
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-semibold">Buttons</h2>
+        <div class="flex flex-wrap gap-3">
+          <Button>Default</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="link">Link</Button>
+          <Button size="sm">Small</Button>
+          <Button size="lg">Large</Button>
+        </div>
+      </section>
+
+      <Separator class="my-12" />
+
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-semibold">Badges</h2>
+        <div class="flex flex-wrap gap-3">
+          <Badge>Default</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="outline">Outline</Badge>
+          <Badge variant="ghost">Ghost</Badge>
+        </div>
+      </section>
+
+      <Separator class="my-12" />
+
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-semibold">Alert</h2>
+        <Alert>
+          <AlertTitle>Educational content only</AlertTitle>
+          <AlertDescription>
+            Nothing here is investment, legal, or religious advice. Speak to a qualified professional
+            before making financial decisions.
+          </AlertDescription>
+        </Alert>
+      </section>
+
+      <Separator class="my-12" />
+
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-semibold">Blockquote (prose)</h2>
+        <div class="prose">
+          <blockquote>
+            "The best of you are those who learn the Quran and teach it."
+          </blockquote>
+        </div>
+      </section>
+
+      <Separator class="my-12" />
+
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-semibold">Prose elements</h2>
+        <div class="prose">
+          <h2>Heading inside prose</h2>
+          <p>
+            This is a paragraph with <strong>bold text</strong>, <em>italic text</em>, and a
+            <a href="#">link</a>. The prose class sets a comfortable reading width of 65 characters.
+          </p>
+          <h3>Subheading</h3>
+          <p>Another paragraph to show spacing and rhythm.</p>
+          <ul>
+            <li>First list item</li>
+            <li>Second list item</li>
+            <li>Third list item</li>
+          </ul>
+          <ol>
+            <li>Ordered item one</li>
+            <li>Ordered item two</li>
+          </ol>
+          <hr />
+          <p>Content after a horizontal rule.</p>
+        </div>
+      </section>
+
+      <Separator class="my-12" />
+
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-semibold">Dark mode</h2>
+        <p class="mb-4 text-muted-foreground">Toggle dark mode by adding the <code class="rounded bg-muted px-1.5 py-0.5 text-sm">.dark</code> class to the <code class="rounded bg-muted px-1.5 py-0.5 text-sm">&lt;html&gt;</code> element.</p>
+        <div class="dark rounded-lg border border-border bg-background p-6 text-foreground">
+          <h3 class="mb-2 text-xl font-semibold">Dark mode preview</h3>
+          <p class="text-muted-foreground">This section has the .dark class applied.</p>
+          <div class="mt-4 flex gap-3">
+            <Button>Primary</Button>
+            <Button variant="outline">Outline</Button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

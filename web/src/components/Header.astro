@@ -1,0 +1,53 @@
+---
+import { SITE } from '../config';
+import MobileNav from './MobileNav';
+import logo from '../assets/logo.png';
+
+const navLinks = [
+  { href: '/tools', label: 'Tools' },
+  { href: '/guides', label: 'Guides' },
+  { href: '/glossary', label: 'Glossary' },
+  { href: '/videos', label: 'Videos' },
+  { href: '/about', label: 'About' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b hairline">
+  <div class="mx-auto flex max-w-[1100px] items-center justify-between px-6 py-5">
+    <a href="/" class="group flex items-center gap-2 no-underline">
+      <img
+        src={logo.src}
+        alt={SITE.name}
+        style="width: 128px; height: 128px; object-fit: contain;"
+        class="transition-opacity duration-150 group-hover:opacity-80"
+      />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden items-center gap-6 md:flex" aria-label="Main navigation">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          aria-current={currentPath.startsWith(link.href) ? 'page' : undefined}
+          class="font-sans text-sm text-foreground no-underline transition-colors duration-150 hover:text-primary"
+          class:list={[
+            currentPath.startsWith(link.href) && 'text-primary font-medium',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/newsletter"
+        class="font-sans text-sm font-medium text-primary no-underline transition-colors duration-150 hover:text-ochre"
+      >
+        Newsletter
+      </a>
+    </nav>
+
+    <!-- Mobile nav (React island) -->
+    <MobileNav client:media="(max-width: 767px)" links={navLinks} currentPath={currentPath} />
+  </div>
+</header>

@@ -1,0 +1,125 @@
+---
+import { SITE } from '../config';
+import logo from '../assets/logo.png';
+
+const learnLinks = [
+  { href: '/guides', label: 'Guides' },
+  { href: '/glossary', label: 'Glossary' },
+  { href: '/tools', label: 'Tools' },
+  { href: '/videos', label: 'Videos' },
+];
+
+const aboutLinks = [
+  { href: '/about', label: 'About' },
+  { href: '/methodology', label: 'Methodology' },
+  { href: '/scholars', label: 'Scholars' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const legalLinks = [
+  { href: '/disclaimer', label: 'Disclaimer' },
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/terms', label: 'Terms' },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t hairline mt-24">
+  <div class="mx-auto max-w-[1100px] px-6 py-12">
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+      <!-- Brand -->
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" class="flex items-center gap-2 no-underline">
+          <img
+            src={logo.src}
+            alt={SITE.name}
+            width="200"
+            height="200"
+            class="h-14 w-14 object-contain"
+          />
+        </a>
+        <p class="mt-3 text-sm text-muted-foreground leading-relaxed">
+          {SITE.tagline}
+        </p>
+      </div>
+
+      <!-- Learn -->
+      <nav aria-label="Learn">
+        <h3 class="eyebrow mb-4">Learn</h3>
+        <ul class="space-y-2">
+          {learnLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-foreground no-underline transition-colors duration-150 hover:text-primary">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- About -->
+      <nav aria-label="About">
+        <h3 class="eyebrow mb-4">About</h3>
+        <ul class="space-y-2">
+          {aboutLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-foreground no-underline transition-colors duration-150 hover:text-primary">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Legal + Social -->
+      <div>
+        <nav aria-label="Legal">
+          <h3 class="eyebrow mb-4">Legal</h3>
+          <ul class="space-y-2">
+            {legalLinks.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-foreground no-underline transition-colors duration-150 hover:text-primary">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {(SITE.social.instagram || SITE.social.youtube) && (
+          <div class="mt-8">
+            <h3 class="eyebrow mb-4">Follow</h3>
+            <ul class="space-y-2">
+              {SITE.social.instagram && (
+                <li>
+                  <a href={SITE.social.instagram} class="text-sm text-foreground no-underline transition-colors duration-150 hover:text-primary" rel="noopener noreferrer" target="_blank">
+                    Instagram
+                  </a>
+                </li>
+              )}
+              {SITE.social.youtube && (
+                <li>
+                  <a href={SITE.social.youtube} class="text-sm text-foreground no-underline transition-colors duration-150 hover:text-primary" rel="noopener noreferrer" target="_blank">
+                    YouTube
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div class="mt-12 border-t hairline pt-8">
+      <p class="text-xs text-muted-foreground">
+        &copy; {currentYear} {SITE.name}. All rights reserved.
+      </p>
+      <p class="mt-2 text-xs text-muted-foreground leading-relaxed">
+        Educational content only. Nothing here is investment, legal, or religious advice, or a
+        recommendation to buy or sell any security. Speak to a SEBI-registered adviser and a qualified
+        scholar before making financial or religious decisions.
+      </p>
+    </div>
+  </div>
+</footer>

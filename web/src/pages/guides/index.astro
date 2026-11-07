@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import GuideRow from '../../components/GuideRow.astro';
+import { getGuides } from '../../lib/sanity';
+
+const guides = await getGuides();
+---
+
+<BaseLayout title="Guides">
+  <PageHeader
+    eyebrow="Guides"
+    title="All guides"
+    dek="Longer explanations on zakat, halal money, and Islamic finance."
+  />
+  <div class="mx-auto max-w-[1100px] px-6 py-8">
+    {guides.length === 0 ? (
+      <p class="text-sm text-muted-foreground italic">Guides are being written. Check back soon.</p>
+    ) : (
+      <div class="divide-y divide-border">
+        {guides.map((guide) => <GuideRow guide={guide} />)}
+      </div>
+    )}
+  </div>
+</BaseLayout>

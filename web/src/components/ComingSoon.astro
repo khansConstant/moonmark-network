@@ -1,0 +1,11 @@
+---
+interface Props {
+  message?: string;
+}
+
+const { message = 'This section is being built. Check back soon.' } = Astro.props;
+---
+
+<div class="mx-auto max-w-[65ch] px-6 py-8">
+  <p class="text-sm text-muted-foreground italic">{message}</p>
+</div>

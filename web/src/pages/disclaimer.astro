@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+
+<BaseLayout title="Disclaimer">
+  <PageHeader
+    eyebrow="Legal"
+    title="Disclaimer"
+    dek="Important information about the nature of our content."
+  />
+  <div class="mx-auto max-w-[65ch] px-6 py-8">
+    <div class="prose">
+      <p class="text-sm text-muted-foreground italic">
+        Draft, pending legal review.
+      </p>
+      <p>
+        Moonmark Network provides educational content about Islamic finance, zakat, and halal money.
+        Nothing on this site constitutes investment, legal, or religious advice, or a recommendation
+        to buy or sell any security.
+      </p>
+      <p>
+        Readers should consult a SEBI-registered investment adviser and a qualified religious scholar
+        before making financial or religious decisions.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

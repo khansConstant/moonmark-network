@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+
+<BaseLayout title="Terms of Service">
+  <PageHeader
+    eyebrow="Legal"
+    title="Terms of Service"
+    dek="The terms and conditions for using this website."
+  />
+  <div class="mx-auto max-w-[65ch] px-6 py-8">
+    <div class="prose">
+      <p class="text-sm text-muted-foreground italic">
+        Draft, pending legal review.
+      </p>
+      <p>
+        These terms of service are being drafted. They will cover acceptable use, intellectual
+        property, and limitations of liability.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

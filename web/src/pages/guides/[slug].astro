@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Disclaimer from '../../components/Disclaimer.astro';
+import PortableTextRenderer from '../../components/PortableTextRenderer';
+import { getGuideBySlug, getGuideSlugs } from '../../lib/sanity';
+import { formatDate } from '../../lib/format';
+import type { PortableTextBlock } from '@portabletext/types';
+
+export async function getStaticPaths() {
+  const slugs = await getGuideSlugs();
+  return slugs.map(({ slug }) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const guide = await getGuideBySlug(slug!);
+
+if (!guide) {
+  return Astro.redirect('/404');
+}
+
+const publishedDate = formatDate(guide.publishedAt);
+const updatedDate = guide.updatedAt ? formatDate(guide.updatedAt) : '';
+const readTime = guide.readMinutes ? `${guide.readMinutes} min read` : '';
+const metaParts = [publishedDate, updatedDate ? `Updated ${updatedDate}` : '', readTime].filter(Boolean);
+const body = (guide.body || []) as PortableTextBlock[];
+---
+
+<BaseLayout title={guide.title} description={guide.dek}>
+  <PageHeader
+    eyebrow={guide.topic || 'Guide'}
+    title={guide.title}
+    dek={guide.dek}
+  />
+  <div class="mx-auto max-w-[1100px] px-6 py-8">
+    <div class="mb-8 max-w-[65ch]">
+      <p class="font-sans text-sm text-muted-foreground">
+        {metaParts.join(' · ')}
+      </p>
+    </div>
+    <div class="max-w-[65ch]">
+      {body.length > 0 ? (
+        <PortableTextRenderer value={body} />
+      ) : (
+        <p class="text-sm text-muted-foreground italic">Content coming soon.</p>
+      )}
+    </div>
+    <div class="mt-12 max-w-[65ch]">
+      <Disclaimer compact />
+    </div>
+  </div>
+</BaseLayout>

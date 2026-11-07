@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ComingSoon from '../../components/ComingSoon.astro';
+---
+
+<BaseLayout title="Tools">
+  <PageHeader
+    eyebrow="Tools"
+    title="Calculators and utilities"
+    dek="Simple tools to help you work through Islamic finance calculations."
+  />
+  <div class="mx-auto max-w-[1100px] px-6 py-8">
+    <div class="divide-y divide-border">
+      <a href="/tools/zakat-calculator" class="group flex items-baseline gap-6 py-6 no-underline transition-colors duration-150 hover:bg-muted/30">
+        <div class="flex-1">
+          <h2 class="font-heading text-xl font-semibold tracking-tight text-foreground transition-colors duration-150 group-hover:text-primary">
+            Zakat calculator
+          </h2>
+          <p class="mt-1 text-sm text-muted-foreground">
+            Calculate zakat on cash, gold, silver, and investments.
+          </p>
+        </div>
+        <span class="text-muted-foreground transition-all duration-150 group-hover:text-primary group-hover:translate-x-1">&rarr;</span>
+      </a>
+    </div>
+  </div>
+  <ComingSoon message="More tools are in development." />
+</BaseLayout>
