@@ -29,6 +29,22 @@ export const guide = defineType({
       validation: (Rule) => Rule.required().max(200),
     }),
     defineField({
+      name: 'coverImage',
+      title: 'Cover image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt text',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+    defineField({
       name: 'topic',
       title: 'Topic',
       type: 'string',

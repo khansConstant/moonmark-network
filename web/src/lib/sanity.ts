@@ -27,6 +27,12 @@ export interface GuideSummary {
 export interface Guide extends GuideSummary {
   body?: unknown[];
   updatedAt?: string;
+  coverImage?: {
+    url: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
 }
 
 export interface GlossaryTerm {
@@ -50,7 +56,13 @@ const guideSummaryFields = `
 const guideFields = `
   ${guideSummaryFields},
   body,
-  updatedAt
+  updatedAt,
+  coverImage{
+    "url": asset->url,
+    alt,
+    "width": asset->metadata.dimensions.width,
+    "height": asset->metadata.dimensions.height
+  }
 `;
 
 export async function getGuides(limit?: number): Promise<GuideSummary[]> {
