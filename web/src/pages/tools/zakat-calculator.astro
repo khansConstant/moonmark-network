@@ -2,19 +2,58 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Disclaimer from '../../components/Disclaimer.astro';
-import ComingSoon from '../../components/ComingSoon.astro';
+import ZakatCalculator from '../../components/ZakatCalculator';
 ---
 
-<BaseLayout title="Zakat Calculator">
+<BaseLayout title="Zakat Calculator" description="Estimate zakat on cash, gold, silver, and other assets.">
   <PageHeader
     eyebrow="Tools"
     title="Zakat calculator"
-    dek="Calculate zakat on cash, gold, silver, and investments."
+    dek="Estimate zakat on cash, gold, silver, and other assets."
   />
   <div class="mx-auto max-w-[1100px] px-6 py-8">
     <div class="mb-8 max-w-[65ch]">
       <Disclaimer compact />
     </div>
-    <ComingSoon message="The zakat calculator is being built. It will help you work through the calculation step by step." />
+    <ZakatCalculator client:load />
+
+    <div class="mt-16 max-w-[65ch] space-y-8">
+      <section>
+        <h2 class="font-heading text-xl font-semibold tracking-tight mb-3">How this estimate works</h2>
+        <div class="prose">
+          <p>
+            This calculator estimates zakat at 2.5% of your net wealth when it meets or exceeds the nisab.
+            You choose whether to measure the nisab against silver (612.36 grams) or gold (87.48 grams).
+            You enter the current price per gram for each metal, along with your cash, bank balances,
+            gold and silver holdings, business stock, and receivables.
+          </p>
+          <p>
+            Debts due now are deducted from your total assets. Personal-use jewelry is excluded unless
+            you choose to include it. The result is an estimate only — it does not account for the hawl
+            (one lunar year) requirement or complex asset classifications.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-xl font-semibold tracking-tight mb-3">What this does not cover</h2>
+        <div class="prose">
+          <p>
+            This calculator does not cover shares, property, cryptocurrency, retirement funds,
+            livestock, or crops. It also does not calculate whether your wealth has been held for a
+            full lunar year (hawl), which is a condition for zakat in most schools of thought.
+          </p>
+          <p>
+            Scholars differ on some points, including how to value certain assets and whether personal
+            jewelry should be included. Ask a qualified scholar about your own case before making
+            any decisions.
+          </p>
+        </div>
+      </section>
+
+      <p class="text-sm text-muted-foreground">
+        Nothing you enter leaves your device. This calculation runs entirely in your browser.
+      </p>
+    </div>
   </div>
 </BaseLayout>
